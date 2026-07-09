@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 3: Deep Love & Distance Matrix ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght=700&family=Poppins:wght=300;400;600;800&family=Caveat:wght=700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #02020a;
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            background: radial-gradient(circle at center, #0c051a 0%, #010103 100%);
+        }
+
+        /* 8 STAGES ATOMIC FRAME SYSTEM - ABSOLUTELY ZERO COMBINED CONTENT */
+        .stage {
+            position: absolute;
+            width: 90%;
+            max-width: 430px;
+            padding: 30px 22px;
+            background: rgba(14, 6, 28, 0.88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 2px solid #ff477e;
+            border-radius: 24px;
+            box-shadow: 0 25px 60px rgba(255, 71, 126, 0.2);
+            z-index: 10;
+            text-align: center;
+            opacity: 0;
+            transform: scale(0.85) translateY(30px);
+            pointer-events: none;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .stage.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+            z-index: 12;
+        }
+
+        h1 {
+            font-size: 1.7rem;
+            background: linear-gradient(45deg, #00ffcc, #ff477e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .story-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #e6dbf5;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #ff477e, #00ffcc);
+            color: #000000;
+            font-weight: 700;
+            border: none;
+            padding: 13px 28px;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 71, 126, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 25px rgba(0, 255, 204, 0.5);
+            color: #ffffff;
+        }
+
+        /* BIOMETRIC NEON CIRCLE */
+        .biometric-scanner {
+            width: 120px;
+            height: 120px;
+            border: 3px dashed #00ffcc;
+            border-radius: 50%;
+            margin: 25px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(0,255,204,0.2);
+            position: relative;
+        }
+        .biometric-scanner.scanning {
+            animation: spinRadar 2s linear infinite;
+            border-color: #ff477e;
+            box-shadow: 0 0 35px rgba(255,71,126,0.6);
+        }
+        @keyframes spinRadar { 100% { transform: rotate(360deg); } }
+
+        /* SINGLE DEDICATED MEDIA VISUALIZER FRAME */
+        .media-container {
+            width: 100%;
+            height: 280px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 2px solid #00ffcc;
+            background: #000;
+            box-shadow: 0 12px 30px rgba(0, 255, 204, 0.15);
+        }
+
+        .media-container img, .media-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* EMOTIONAL DIALOGUE BOX */
+        .quote-bubble {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid #ff477e;
+            border-right: 4px solid #00ffcc;
+            padding: 16px;
+            border-radius: 14px;
+            text-align: left;
+            margin: 10px 0;
+        }
+        .line-ta {
+            font-size: 1.05rem;
+            color: #ffeff4;
+            margin-bottom: 8px;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+        .line-en {
+            font-size: 0.9rem;
+            color: #cff6ff;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* HOURGLASS CONFIGURATION */
+        .hourglass-box {
+            position: relative;
+            width: 70px;
+            height: 105px;
+            margin: 15px auto;
+        }
+        .hourglass-anim {
+            width: 100%; height: 100%;
+            animation: flipHG 9s infinite steps(1);
+        }
+        .top-glass, .bottom-glass {
+            position: absolute; left: 15%; width: 70%; height: 44px;
+            border: 2px solid #00ffcc; overflow: hidden;
+        }
+        .top-glass { top: 2px; border-radius: 50% 50% 20% 20%; }
+        .bottom-glass { bottom: 2px; border-radius: 20% 20% 50% 50%; }
+        .top-sand { width: 100%; height: 100%; background: #ff477e; transform-origin: bottom; animation: drainSand 9s infinite linear; }
+        .bottom-sand { width: 100%; height: 0%; background: #ff477e; position: absolute; bottom: 0; animation: fillSand 9s infinite linear; }
+
+        @keyframes drainSand { 100% { transform: scaleY(0); } }
+        @keyframes fillSand { 100% { height: 100%; } }
+        @keyframes flipHG { 0%, 99% { transform: rotate(0deg); } 100% { transform: rotate(180deg); } }
+
+        .live-timer {
+            font-size: 1.35rem;
+            color: #00ffcc;
+            font-weight: bold;
+            font-family: 'Courier Prime', monospace;
+            text-shadow: 0 0 12px rgba(0,255,252,0.4);
+            margin-top: 10px;
+        }
+
+        .floating-heart {
+            position: absolute; color: #ff477e; pointer-events: none; opacity: 0; animation: floatSky 4.5s linear infinite;
+        }
+        @keyframes floatSky {
+            0% { transform: translateY(105vh) scale(0.4); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="space-bg"></div>
+    <audio id="bgm" loop><source src="bgm.mp3" type="audio/mpeg"></audio>
+
+    <div class="stage active" id="stage1">
+        <h1 style="font-family: 'Courier Prime', monospace; font-size: 1.3rem;">&gt;_ DAY_3_DISTANCE_PROTOCOL</h1>
+        <p class="story-text" style="color: #a89bbd; margin-top: 15px;">
+            மச்சான் சொன்ன ஸ்பெஷல் லவ் பாக்ஸ் ரெடி ஆகிடுச்சு செல்லம். அவனோட ஃபீலிங்ஸை தெரிஞ்சுக்க உள்ள வா தங்கம்...
+        </p>
+        <button class="btn" onclick="goToStage(2)">⚡ INITIALIZE FREQUENCY</button>
+    </div>
+
+    <div class="stage" id="stage2">
+        <h1>Distance Sync Room 🧬</h1>
+        <p class="story-text">நீ இப்போ ஹாஸ்டல்ல ரொம்ப தூரத்துல இருக்க ஆனா உன் மனசு இங்கதானே இருக்கு! இந்த வட்டத்துல உன் விரலை வச்சு அழுத்து, நம்ம லவ் சிங்க் ஆகி பாட்டு ஸ்டார்ட் ஆகும்!</p>
+        <div class="biometric-scanner" id="scannerCircle" onclick="triggerBiometricScan()">❤️</div>
+        <p id="scan-log" style="margin-top:10px; font-weight:bold; color:#00ffcc; font-family:monospace; min-height:22px;"></p>
+    </div>
+
+    <div class="stage" id="stage3">
+        <h1>Missing You So Hard 🥺</h1>
+        <div class="quote-bubble">
+            <div class="line-ta">"இப்பதான் உன்னை ஹாஸ்டல்ல விட்டுட்டு வர்றேன், ஆனா அதுக்குள்ள பல யுகங்கள் பிரிஞ்ச மாதிரி என் மனசு தவிக்குதுடி! இனி அடிக்கடி பார்க்க முடியாதுன்னு நினைக்கும்போதே நெஞ்சு வலிக்குது..."</div>
+            <div class="line-en">"Leaving you at the hostel gate was the hardest thing I've done today. The distance begins now, but my thoughts are locked with you."</div>
+        </div>
+        <button class="btn" onclick="goToStage(4)">👉 Touch To See Your Photo</button>
+    </div>
+
+    <div class="stage" id="stage4">
+        <h1>My Beautiful View 🌸</h1>
+        <div class="media-container">
+            <img src="photo1.jpg" alt="Your Beautiful Frame">
+        </div>
+        <p class="story-text" style="margin-top: 15px; font-size: 0.95rem;">
+            நீ என் கண்ணu முன்னாடி இல்லாத இந்த தூரத்துல, உன்னோட இந்த கியூட் மூஞ்சு தான்டி எனக்கு ஒரே மருந்து! ❤️
+        </p>
+        <button class="btn" onclick="goToStage(5)">👉 Enter The Video Room</button>
+    </div>
+
+    <div class="stage" id="stage5">
+        <h1>Pure Loop Of Us 🎬</h1>
+        <div class="media-container" style="border-color: #ff477e;">
+            <video id="loopReel" autoplay loop muted playsinline>
+                <source src="video.mp4" type="video/mp4">
+            </video>
+        </div>
+        <p class="story-text" style="margin-top: 15px; font-size: 0.95rem;">
+            இந்த 2 செகண்ட் எக்ஸ்பிரஷனை நான் லூப்ல பார்த்துட்டே இருப்பேன். ஏன்னா இதுல இருக்குற உன் சிரிப்பு தான் என் உலகம்!
+        </p>
+        <button class="btn" onclick="goToStage(6)">⏳ Load Time Machine</button>
+    </div>
+
+    <div class="stage" id="stage6">
+        <h1>Time Is Counting... ⏳</h1>
+        <div class="hourglass-box">
+            <div class="hourglass-anim">
+                <div class="top-glass"><div class="top-sand"></div></div>
+                <div class="bottom-glass"><div class="bottom-sand"></div></div>
+            </div>
+        </div>
+        <div class="live-timer" id="countdownTimer">4 Days Left</div>
+        <p class="story-text" style="margin-top:15px; font-size: 0.9rem; color:#bbaacc;">
+            ஹாஸ்டல் தூரம் நம்ம உடம்பை தான் பிரிச்சிருக்கு, ஆனா நம்ம டேஸை குறைக்க முடியாது. இன்னும் 4 நாள்ல உன் பர்த்டே தங்கம்!
+        </p>
+        <button class="btn" onclick="goToStage(7)">👉 Open Soul Note</button>
+    </div>
+
+    <div class="stage" id="stage7">
+        <h1>Inseparable Bonds 💞</h1>
+        <div class="quote-bubble">
+            <div class="line-ta">"அடிக்கடி பார்க்க முடியலனாலும் பரவாலடி, என் ஒவ்வொரு மூச்சுக் காற்றும் உன் பேரை மட்டும்தான் சொல்லும். நீ ஹாஸ்டல்ல இருந்தாலும் என் இதயத்துக்குள்ள தான் பத்திரமா இருக்க!"</div>
+            <div class="line-en">"Distance means absolutely nothing when someone means absolutely everything. You may be miles away in a room, but you rule my heart permanently."</div>
+        </div>
+        <button class="btn" onclick="goToStage(8)">🚀 UNLOCK CORE CLIMAX</button>
+    </div>
+
+    <div class="stage" id="stage8">
+        <h1>Advance Happy Birthday, En Pondatti! 💍❤️</h1>
+        <p class="story-text" style="font-family: 'Caveat', cursive; font-size: 1.65rem; color: #ff477e; margin-bottom: 12px;">
+            "நீ ஹாஸ்டல் போயிட்டேன்னு ஃபீல் பண்ணாத தங்கம், உன் நினைவுகளோடு நான் எப்போவும் உன் கூடவே தான் இருப்பேன். இன்னும் 4 நாள்ல என் மகாராணிக்கு பிறந்தநாள்!"
+        </p>
+        <h3 style="color:#00ffcc; font-weight:800; text-shadow: 0 0 12px rgba(0,255,252,0.5); font-size: 1.1rem;">I Love You & Miss You So Much, My Wifey! 💋</h3>
+    </div>
+
+    <script>
+        function triggerBiometricScan() {
+            let circle = document.getElementById('scannerCircle');
+            let log = document.getElementById('scan-log');
+            
+            circle.classList.add('scanning');
+            log.innerText = "Syncing Distant Pulses... 🧪";
+            
+            // Programmatically start audio on page 2 interaction
+            const audioTrack = document.getElementById("bgm");
+            audioTrack.play().catch(e => console.log("BGM playback initialized."));
+            
+            setTimeout(() => {
+                circle.classList.remove('scanning');
+                log.innerText = "CONNECTED: BGM STARTED & SOUL SYNCED ✅";
+                setTimeout(() => { goToStage(3); }, 1400);
+            }, 2400);
+        }
+
+        function goToStage(index) {
+            document.querySelectorAll('.stage').forEach(stg => stg.classList.remove('active'));
+            let activeStage = document.getElementById('stage' + index);
+            if(activeStage) activeStage.classList.add('active');
+            
+            // Ensure video safely loops when arriving at page 5
+            if (index === 5) {
+                const videoEl = document.getElementById("loopReel");
+                if(videoEl) videoEl.play().catch(e => console.log("Reel forced play."));
+            }
+        }
+
+        // Live Dynamic Countdown Clock for July 13, 2026
+        const birthdayDate = new Date("July 13, 2026 00:00:00").getTime();
+        setInterval(() => {
+            const currentTime = new Date().getTime();
+            const difference = birthdayDate - currentTime;
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            let displayElement = document.getElementById("countdownTimer");
+            if(displayElement) { displayElement.innerText = `${days}D : ${hours}H : ${minutes}M : ${seconds}S`; }
+        }, 1000);
+
+        // Particle Generation Engine
+        const backgroundContainer = document.getElementById('space-bg');
+        const particleIcons = ['❤️', '✨', '😭', '🌸', '💫'];
+        function generateParticles() {
+            const particle = document.createElement('div');
+            particle.classList.add('floating-heart');
+            particle.innerText = particleIcons[Math.floor(Math.random() * particleIcons.length)];
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.fontSize = Math.random() * 14 + 10 + 'px';
+            backgroundContainer.appendChild(particle);
+            setTimeout(() => { particle.remove(); }, 4500);
+        }
+        setInterval(generateParticles, 320);
+    </script>
+</body>
+</html>
